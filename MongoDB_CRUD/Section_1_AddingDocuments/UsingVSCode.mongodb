@@ -1,0 +1,57 @@
+// Using VSCode
+
+
+// Select the database to use.
+use('bookdb');
+
+// Insert a few documents into the sales collection.
+db.books.insertOne({ 
+    title: 'MongoDB insertOne',
+    isbn: '0-7617-6154-3'
+});
+
+use('bookdb');
+db.books.find();
+
+use('bookdb');
+db.books.insertOne({
+    _id: 1,
+    title: "Mastering Big Data",
+    isbn: "0-9270-4986-4"
+ });
+
+ use('bookdb');
+ db.books.insertMany([
+    { title:  "NoSQL Distilled", isbn: "0-4696-7030-4"},
+    { title:  "NoSQL in 7 Days", isbn: "0-4086-6859-8"},
+    { title:  "NoSQL Database", isbn: "0-2504-6932-4"},
+ ]);
+
+use('bookdb');
+db.books.find();
+
+use('bookdb');
+db.books.insertMany([
+    { _id: 1, title:  "SQL Basics", isbn: "0-7925-6962-8"},
+    { _id: 2, title:  "SQL Advanced", isbn: "0-1184-7778-1"}
+ ]);
+
+//  The following statement attempts to insert documents whose _id value already exist:
+
+ db.books.insertMany([
+    { _id: 2, title:  "SQL Performance Tuning", isbn: "0-6799-2974-6"},
+    { _id: 3, title:  "SQL Index", isbn: "0-5097-1723-3"}
+ ]);
+ //  Since the _id: 2 already exists, MongoDB threw the following exception:
+
+
+//  3) Unordered insert example
+// The following example uses the insertMany() method to perform an unordered insert:
+
+db.books.insertMany(
+   [{ _id: 3, title:  "SQL Performance Tuning", isbn: "0-6799-2974-6"},
+   { _id: 3, title:  "SQL Trees", isbn: "0-6998-1556-8"},
+   { _id: 4, title:  "SQL Graph", isbn: "0-6426-4996-0"},
+   { _id: 5, title:  "NoSQL Pros", isbn: "0-9602-9886-X"}], 
+   { ordered: false }
+);
